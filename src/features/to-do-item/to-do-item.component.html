@@ -1,9 +1,12 @@
-<li id="container">
+<div id="item">
     <h2 [class.completed]="item.isCompleted">{{item.content}}</h2>
-    <button [attr.aria-checked]="item.isCompleted" mat-raised-button (click)="ClickComplete()">
-        Complete
+    <button class="complete-button" 
+    aria-label="Mark as completed" 
+    mat-raised-button 
+    (click)="ClickComplete()">
+        <mat-icon>check_circle</mat-icon>
     </button>
-    <button aria-label="delete item" mat-raised-button (click)="ClickDelete()">
+    <button class="delete-btn" aria-label="delete item" mat-raised-button (click)="ClickDelete()">
         <mat-icon>delete</mat-icon>
     </button>
-</li>
+</div>

@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, timeout } from 'rxjs';
 
 export interface Item {
   content: string;
@@ -32,20 +32,20 @@ export class AppComponent {
       isCompleted: false
     }
   ]);
-  public AddedItem: boolean = false;
   public ItemContent: string = '';
   public IsDialogOpen: boolean = false;
   public LiveMessage: string = '';
+  public FocusedIndex: number = 0; 
   private liveMessageQueue: string[] = [];
   @ViewChild('taskInput') taskInput!: ElementRef;
 
+  constructor(){}
+
   public Complete(completedItem: Item) {
     const currentArray = this.List$.getValue();
-
     const updatedArray = currentArray.map(item =>
       item === completedItem ? { content: item.content, isCompleted: true } : item
     );
-  
     this.List$.next(updatedArray);
     this.LiveMessage = `${completedItem.content} was completed successfully`;
     this.addLiveMessage(this.LiveMessage);
@@ -64,10 +64,8 @@ export class AppComponent {
     const updatedArray = [...currentArray, {content: this.ItemContent, isCompleted: false}];
     this.List$.next(updatedArray);
     this.LiveMessage = `${this.ItemContent} added successfully`;
-    this.AddedItem = false;
-    this.ItemContent = '';
-    
     this.addLiveMessage(this.LiveMessage);
+    this.ItemContent = '';
     this.CloseDialog();
   }
 
@@ -86,14 +84,44 @@ export class AppComponent {
   }
   
   private processLiveMessages() {
-    if (this.LiveMessage || this.liveMessageQueue.length === 0) {
+    if (this.LiveMessage === '' || this.liveMessageQueue.length === 0) {
       return;
     }
   
-    this.LiveMessage = this.liveMessageQueue.shift()!;
+    this.LiveMessage = this.liveMessageQueue.shift();
     setTimeout(() => {
       this.LiveMessage = '';
       this.processLiveMessages(); 
     }, 3000);
   }
+
+
+  
+
+  public OnKeyDown(event: KeyboardEvent, index: number) {
+    switch (event.key) {
+      case 'ArrowDown':
+        this.focusNextItem(index);
+        break;
+      case 'ArrowUp':
+        this.focusPrevItem(index);
+        break;
+      case 'Escape':
+        this.focusPrevItem(index);
+        break;
+    }
+  }
+
+  private focusNextItem(index: number): void {
+    if (index < this.List$.value.length - 1) {
+      this.FocusedIndex = index + 1;
+    }
+  }
+
+  private focusPrevItem(index: number): void {
+    if (index > 0) {
+      this.FocusedIndex = index - 1;
+    }
+  }
+
 }

@@ -1,18 +1,27 @@
-<div role="screen">
+<main role="main-page">
     <header id="title">
         <h1>To Do List</h1>
     </header>
     <section id="content">
         <ul role="list" id="list">
-            <app-to-do-item role="listitem" *ngFor="let item of List$ | async" [item]="item" (OnComplete)="Complete($event)" (OnDelete)="Delete($event)"></app-to-do-item>
+            <app-to-do-item 
+            *ngFor="let item of List$ | async; let i = index" 
+            [tabindex]="i === FocusedIndex ? 0 : -1"
+            (keydown)="OnKeyDown($event, i)" 
+            role="listitem" 
+            [item]="item" 
+            (OnComplete)="Complete($event)" 
+            (OnDelete)="Delete($event)">
+            </app-to-do-item>
         </ul>
         <div>
             <div  role="dialog" *ngIf="IsDialogOpen" class="dialog-container" cdkTrapFocus>
                 <input
+                id="newItemName"
                 #taskInput
-                aria-label="Task name"
+                aria-label="item name"
                 [(ngModel)]="ItemContent"
-                placeholder="Enter task" 
+                placeholder="Enter item" 
                 (keydown.enter)="AddItem()" 
             >
                 <button 
@@ -28,4 +37,4 @@
             </div>
         </div>
     </section>
-</div>
+</main>
