@@ -15,7 +15,7 @@
             </app-to-do-item>
         </ul>
         <div>
-            <div  role="dialog" *ngIf="IsDialogOpen" class="dialog-container" cdkTrapFocus>
+            <div role="dialog" *ngIf="IsDialogOpen" class="dialog-container" cdkTrapFocus>
                 <input
                 id="newItemName"
                 #taskInput
@@ -24,11 +24,11 @@
                 placeholder="Enter item" 
                 (keydown.enter)="AddItem()" 
             >
-                <button 
+                <button class="add-item"
                 mat-raised-button (click)="AddItem()">add</button>
             </div>
             
-            <button mat-raised-button *ngIf="!IsDialogOpen" (click)="OpenDialog()">Add new item</button>
+            <button class="open-dialog" mat-raised-button *ngIf="!IsDialogOpen" (click)="OpenDialog()">Add new item</button>
             <div *ngIf="this.LiveMessage !== ''"
             class="live-message" 
             aria-live="polite" 
