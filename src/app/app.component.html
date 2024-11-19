@@ -1,0 +1,4 @@
+<div>to do list</div>
+<div *ngFor="let item of List$ | async">
+    <app-to-do-item [item]="item" (OnComplete)="Complete($event)" (OnDelete)="Delete($event)"></app-to-do-item>
+</div>
