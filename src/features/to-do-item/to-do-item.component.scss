@@ -1,12 +1,28 @@
+button {
+    width: 5vw;
+}
+
+:host ::ng-deep .mat-mdc-unelevated-button>.mat-icon, 
+.mat-mdc-raised-button>.mat-icon, 
+.mat-mdc-outlined-button>.mat-icon {
+    margin-right: 0px;
+}
+
 #item {
     width: 40vw;
-    height: 9vh;
+    height: 12vh;
     border: 1px solid black;
     border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1vw;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        gap: 2vh;
+    }
 }
 
 .completed {
