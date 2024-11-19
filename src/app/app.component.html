@@ -14,27 +14,12 @@
             (OnDelete)="Delete($event)">
             </app-to-do-item>
         </ul>
-        <div>
-            <div role="dialog" *ngIf="IsDialogOpen" class="dialog-container" cdkTrapFocus>
-                <input
-                id="newItemName"
-                #taskInput
-                aria-label="item name"
-                [(ngModel)]="ItemContent"
-                placeholder="Enter item" 
-                (keydown.enter)="AddItem()" 
-            >
-                <button class="add-item"
-                mat-raised-button (click)="AddItem()">add</button>
-            </div>
-            
-            <button class="open-dialog" mat-raised-button *ngIf="!IsDialogOpen" (click)="OpenDialog()">Add new item</button>
-            <div *ngIf="this.LiveMessage !== ''"
-            class="live-message" 
-            aria-live="polite" 
-            aria-atomic="true">
-            {{ LiveMessage }}
-            </div>
+        <app-add-item (OnAddItem)="AddItem($event)"></app-add-item>
+        <div *ngIf="this.LiveMessage !== ''"
+        class="live-message" 
+        aria-live="polite" 
+        aria-atomic="true">
+        {{ LiveMessage }}
         </div>
     </section>
 </main>

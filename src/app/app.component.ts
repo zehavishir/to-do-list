@@ -1,5 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { BehaviorSubject, timeout } from 'rxjs';
+import { Component } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 export interface Item {
   content: string;
@@ -32,12 +32,9 @@ export class AppComponent {
       isCompleted: false
     }
   ]);
-  public ItemContent: string = '';
-  public IsDialogOpen: boolean = false;
   public LiveMessage: string = '';
   public FocusedIndex: number = 0; 
   private liveMessageQueue: string[] = [];
-  @ViewChild('taskInput') taskInput!: ElementRef;
 
   constructor(){}
 
@@ -59,23 +56,12 @@ export class AppComponent {
     this.addLiveMessage(this.LiveMessage);
   }
 
-  public AddItem(): void {
+  public AddItem(ItemContent: string): void {
     const currentArray = this.List$.value;
-    const updatedArray = [...currentArray, {content: this.ItemContent, isCompleted: false}];
+    const updatedArray = [...currentArray, {content: ItemContent, isCompleted: false}];
     this.List$.next(updatedArray);
-    this.LiveMessage = `${this.ItemContent} added successfully`;
+    this.LiveMessage = `${ItemContent} added successfully`;
     this.addLiveMessage(this.LiveMessage);
-    this.ItemContent = '';
-    this.CloseDialog();
-  }
-
-  public OpenDialog(): void {
-    this.IsDialogOpen = true;
-    setTimeout(() => this.taskInput?.nativeElement.focus(), 0);
-  }
-
-  public CloseDialog(): void {
-    this.IsDialogOpen = false;
   }
 
   private addLiveMessage(message: string) {

@@ -32,29 +32,6 @@
     height: 90%;
 }
 
-.open-dialog {
-    background-color: #0056b3 !important;
-    color: white !important;
-
-    &:hover{
-        background-color: #003c82 !important;
-    }
-}
-
-.add-item {
-    background-color: #0056b3 !important;
-    color: white !important;
-
-    &:hover{
-        background-color: #003c82 !important;
-    }
-}
-
-#newItemName {
-    width: 22vw;
-    height: 5vh;
-}
-
 .live-message {
     position: fixed;
     bottom: 20px;
