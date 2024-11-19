@@ -1,4 +1,31 @@
-<div>to do list</div>
-<div *ngFor="let item of List$ | async">
-    <app-to-do-item [item]="item" (OnComplete)="Complete($event)" (OnDelete)="Delete($event)"></app-to-do-item>
+<div role="screen">
+    <header id="title">
+        <h1>To Do List</h1>
+    </header>
+    <section id="content">
+        <ul role="list" id="list">
+            <app-to-do-item role="listitem" *ngFor="let item of List$ | async" [item]="item" (OnComplete)="Complete($event)" (OnDelete)="Delete($event)"></app-to-do-item>
+        </ul>
+        <div>
+            <div  role="dialog" *ngIf="IsDialogOpen" class="dialog-container" cdkTrapFocus>
+                <input
+                #taskInput
+                aria-label="Task name"
+                [(ngModel)]="ItemContent"
+                placeholder="Enter task" 
+                (keydown.enter)="AddItem()" 
+            >
+                <button 
+                mat-raised-button (click)="AddItem()">add</button>
+            </div>
+            
+            <button mat-raised-button *ngIf="!IsDialogOpen" (click)="OpenDialog()">Add new item</button>
+            <div *ngIf="this.LiveMessage !== ''"
+            class="live-message" 
+            aria-live="polite" 
+            aria-atomic="true">
+            {{ LiveMessage }}
+            </div>
+        </div>
+    </section>
 </div>

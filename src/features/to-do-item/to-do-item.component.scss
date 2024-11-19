@@ -1,0 +1,15 @@
+#container {
+    width: 40vw;
+    height: 9vh;
+    border: 1px solid black;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1vw;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: gray;
+}

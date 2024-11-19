@@ -5,7 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToDoItemModule } from 'src/features/to-do-item/to-do-item.module';
-
+import { FormsModule } from '@angular/forms';
+import { A11yModule } from '@angular/cdk/a11y';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent
@@ -14,7 +16,10 @@ import { ToDoItemModule } from 'src/features/to-do-item/to-do-item.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ToDoItemModule
+    ToDoItemModule,
+    FormsModule,
+    A11yModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
