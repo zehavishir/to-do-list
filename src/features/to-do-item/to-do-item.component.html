@@ -1,4 +1,4 @@
-<div id="item">
+<div tabindex="0" (keydown)="OnKeydown($event)" id="item">
     <h2 [class.completed]="item.isCompleted">{{item.content}}</h2>
     <div class="todo-actions" aria-label="To-do item actions">
         <button class="complete-button" 

@@ -81,9 +81,6 @@ export class AppComponent {
     }, 3000);
   }
 
-
-  
-
   public OnKeyDown(event: KeyboardEvent, index: number) {
     switch (event.key) {
       case 'ArrowDown':

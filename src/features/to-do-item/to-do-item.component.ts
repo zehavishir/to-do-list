@@ -1,4 +1,4 @@
-import { Input,Output,Component, EventEmitter } from '@angular/core';
+import { Input,Output,Component, EventEmitter, HostListener } from '@angular/core';
 import { Item } from 'src/app/app.component';
 
 @Component({
@@ -8,8 +8,17 @@ import { Item } from 'src/app/app.component';
 })
 export class ToDoItemComponent {
   @Input() item: Item;
+  @Input() tabindex: number;
+
   @Output() OnComplete = new EventEmitter<Item>();
   @Output() OnDelete = new EventEmitter<Item>();
+  @Output() keydownEvent = new EventEmitter<KeyboardEvent>();
+
+  @HostListener('keydown', ['$event'])
+  OnKeydown(event: KeyboardEvent) {
+    this.keydownEvent.emit(event);
+  }
+
 
 
   public ClickComplete(): void {

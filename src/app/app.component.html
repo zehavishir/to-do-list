@@ -7,7 +7,7 @@
             <app-to-do-item 
             *ngFor="let item of List$ | async; let i = index" 
             [tabindex]="i === FocusedIndex ? 0 : -1"
-            (keydown)="OnKeyDown($event, i)" 
+            (keydownEvent)="OnKeyDown($event, i)" 
             role="listitem" 
             [item]="item" 
             (OnComplete)="Complete($event)" 
