@@ -16,19 +16,15 @@ export class AppComponent {
 
   public List$:BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>([
     {
-      content:'finish homework',
+      content:'Finish math homework',
       isCompleted: false
     },
     {
-      content:'finish laundry',
+      content:'Practice guitar',
       isCompleted: false
     },
     {
-      content:'cook dinner',
-      isCompleted: false
-    },
-    {
-      content:'go visit grandma',
+      content:'Go for a 10-min walk',
       isCompleted: false
     }
   ]);
